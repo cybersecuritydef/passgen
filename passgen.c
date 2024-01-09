@@ -39,11 +39,17 @@ int main(int argc, char **argv){
 
     prompt("Input birthday: ", p.birthday, sizeof(p.birthday));
 
+    prompt("Input path file: ", p.filename, sizeof(p.filename));
+
     INFORMATION("Starting generate...\n");
     pwd = generate_passwords(&p);
-    INFORMATION("Passwords save to file.\n");
-    save_to_file(pwd, "d:\\pwd.txt");
-    list_passwords_free(&pwd);
 
+    INFORMATION("Passwords save to file...\n");
+    if(save_to_file(pwd, p.filename))
+        INFORMATION("Successful!");
+    else
+        INFORMATION("Error save to file!");
+
+    list_passwords_free(&pwd);
     return 0;
 }

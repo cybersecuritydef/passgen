@@ -14,10 +14,8 @@ static void add_password_list(list_passwords **pwd, const char *value){
             tmp->next = (*pwd);
             (*pwd) = tmp;
         }
-        else{
-            perror("Memory allocation error");
-            exit(EOF);
-        }
+        else
+            DIE("Memory allocation error");
     }
 }
 
@@ -438,8 +436,8 @@ list_passwords *generate_passwords(person *p){
         password_mutation(&pwd);
 
 
-        INFORMATION("Passwords upper...\n");
-        password_upper(&pwd);
+        /*INFORMATION("Passwords upper...\n");
+        password_upper(&pwd);*/
 
         return pwd;
     }
@@ -466,6 +464,7 @@ int save_to_file(list_passwords *pwd, const char *filename){
             fprintf(file, "%s\n", pwd->password);
             pwd = pwd->next;
         }
+        return 0;
     }
     return EOF;
 }

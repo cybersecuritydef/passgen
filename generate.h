@@ -11,6 +11,7 @@ typedef struct _person{
     char pet[MAX_NAME_LEN];
     char company[MAX_NAME_LEN];
     char birthday[BIRTHDAY_LEN];
+    char filename[MAX_NAME_LEN];
 }person;
 
 typedef struct _list_passwords{
