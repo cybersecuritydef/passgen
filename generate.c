@@ -33,7 +33,7 @@ static void add_password_digit(list_passwords **pwd){
             /* add digits to right */
             for(jj = 0; jj <= 9; jj++){
                 memset(word, '\0', sizeof(word));
-                strncpy(word, cur->password, MAX_PASS_LEN);
+                snprintf(word, MAX_PASS_LEN - 1, "%s", cur->password);
                 for(index = jj; index <= 9; index++){
                     snprintf(word, MAX_PASS_LEN - 1, "%s%d", word, index);
                     add_password_list(&new_pwd, word);
@@ -45,7 +45,7 @@ static void add_password_digit(list_passwords **pwd){
                 memset(word, '\0', sizeof(word));
                 memset(t, '\0', sizeof(t));
                 memset(w, '\0', sizeof(w));
-                strncpy(word, cur->password, MAX_PASS_LEN);
+                snprintf(word, MAX_PASS_LEN - 1, "%s", cur->password);
                 for(index = jj; index <= 9; index++){
                     snprintf(w, MAX_PASS_LEN - 1, "%s%d", w, index);
                     snprintf(t, MAX_PASS_LEN - 1, "%s%s", w, word);
@@ -426,7 +426,6 @@ list_passwords *generate_passwords(person *p){
                 names_join_birthday(&pwd, p->firstname, p->lastname, p->birthday);
                 names_join_birthday(&pwd, p->lastname, p->firstname, p->birthday);
             }
-
         }
 
         INFORMATION("Add digits in passwords...\n");
