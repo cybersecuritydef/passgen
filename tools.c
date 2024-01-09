@@ -74,3 +74,17 @@ int str_lower_string(const char *str, char *new_str){
     }
     return EOF;
 }
+
+int str_reverse_string(const char *str, char *new_str){
+    int i, j;
+    if(str != NULL && new_str != NULL){
+        i = strlen(str) - 1;
+        j = 0;
+        while(i >= 0){
+            new_str[j++] = str[i--];
+        }
+        new_str[j] = '\0';
+        return 0;
+    }
+    return EOF;
+}

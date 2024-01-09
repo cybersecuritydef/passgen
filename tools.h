@@ -11,4 +11,6 @@ int str_upper_string(const char *str, char *new_str);
 
 int str_lower_string(const char *str, char *new_str);
 
+int str_reverse_string(const char *str, char *new_str);
+
 #endif // __TOOLS_H__

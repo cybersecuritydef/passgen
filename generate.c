@@ -27,6 +27,7 @@ static void add_password_digit(list_passwords **pwd){
     char t[MAX_PASS_LEN] = {'\0'};
     int index = 0;
     int jj = 0;
+    int i = 0;
     list_passwords *new_pwd = NULL;
     list_passwords *cur = NULL;
     if(pwd != NULL && (*pwd) != NULL){
@@ -42,6 +43,21 @@ static void add_password_digit(list_passwords **pwd){
                 }
             }
 
+            for(i = 9; i >= 2; i--){
+                for(jj = 0; jj <= 9; jj++){
+                    memset(w, '\0', sizeof(w));
+                    memset(word, '\0', sizeof(word));
+                    for(index = 0; index < i; index++)
+                        snprintf(w, MAX_PASS_LEN - 1, "%s%d", w, jj);
+                    snprintf(word, MAX_NAME_LEN - 1, "%s%s", cur->password, w);
+                    add_password_list(&new_pwd, word);
+                    snprintf(word, MAX_NAME_LEN - 1, "%s_%s", cur->password, w);
+                    add_password_list(&new_pwd, word);
+                    snprintf(word, MAX_NAME_LEN - 1, "%s-%s", cur->password, w);
+                    add_password_list(&new_pwd, word);
+                }
+            }
+
             /* add digits to left */
             for(jj = 0; jj <= 9; jj++){
                 memset(word, '\0', sizeof(word));
@@ -52,6 +68,21 @@ static void add_password_digit(list_passwords **pwd){
                     snprintf(w, MAX_PASS_LEN - 1, "%s%d", w, index);
                     snprintf(t, MAX_PASS_LEN - 1, "%s%s", w, word);
                     add_password_list(&new_pwd, t);
+                }
+            }
+
+            for(i = 9; i >= 2; i--){
+                for(jj = 0; jj <= 9; jj++){
+                    memset(w, '\0', sizeof(w));
+                    memset(word, '\0', sizeof(word));
+                    for(index = 0; index < i; index++)
+                        snprintf(w, MAX_PASS_LEN - 1, "%s%d", w, jj);
+                    snprintf(word, MAX_NAME_LEN - 1, "%s%s", w, cur->password);
+                    add_password_list(&new_pwd, word);
+                    snprintf(word, MAX_NAME_LEN - 1, "%s_%s", w, cur->password);
+                    add_password_list(&new_pwd, word);
+                    snprintf(word, MAX_NAME_LEN - 1, "%s-%s", w, cur->password);
+                    add_password_list(&new_pwd, word);
                 }
             }
 
@@ -372,6 +403,23 @@ static void names_join_birthday(list_passwords **pwd, const char *firstname, con
     }
 }
 
+static void password_reverse(list_passwords **pwd){
+    char word[MAX_PASS_LEN] = {'\0'};
+    list_passwords *new_pwd = NULL;
+    list_passwords *cur = NULL;
+    if(pwd != NULL && (*pwd) != NULL){
+        cur = (*pwd);
+        while(cur != NULL){
+            memset(word, '\0', sizeof(word));
+            if(str_reverse_string(cur->password, word) == 0)
+                add_password_list(&new_pwd, word);
+            add_password_list(&new_pwd, cur->password);
+            cur = cur->next;
+        }
+        (*pwd) = new_pwd;
+    }
+}
+
 list_passwords *generate_passwords(person *p){
     list_passwords *pwd = NULL;
 
@@ -436,9 +484,11 @@ list_passwords *generate_passwords(person *p){
         INFORMATION("Passwords mutation...\n");
         password_mutation(&pwd);
 
+        INFORMATION("Passwords reverse...\n");
+        password_reverse(&pwd);
 
-        /*INFORMATION("Passwords upper...\n");
-        password_upper(&pwd);*/
+        INFORMATION("Passwords upper...\n");
+        password_upper(&pwd);
 
         return pwd;
     }

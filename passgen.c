@@ -26,16 +26,10 @@ char *prompt(const char *msg, char *buf, size_t len){
     return NULL;
 }
 
-void print(list_passwords *pwd){
-    while(pwd != NULL){
-        DEBUG(pwd->password);
-        pwd = pwd->next;
-    }
-}
-
 int main(int argc, char **argv){
     person p;
     list_passwords *pwd = NULL;
+
     memset(&p, '\0', sizeof(p));
 
     prompt("Input firstname: ", p.firstname, sizeof(p.firstname));
@@ -52,17 +46,19 @@ int main(int argc, char **argv){
 
     prompt("Input birthday: ", p.birthday, sizeof(p.birthday));
 
-    prompt("Input path file: ", p.filename, sizeof(p.filename));
+    prompt("Input filename: ", p.filename, sizeof(p.filename));
 
     INFORMATION("Starting generate...\n");
-    pwd = generate_passwords(&p);
+    if((pwd = generate_passwords(&p)) != NULL){
+        INFORMATION("Passwords save to file...\n");
+        if(save_to_file(pwd, p.filename))
+            INFORMATION("Successful!\n");
+        else
+            die("Error save to file!");
 
-    INFORMATION("Passwords save to file...\n");
-    if(save_to_file(pwd, p.filename))
-        INFORMATION("Successful!\n");
+        list_passwords_free(&pwd);
+    }
     else
-        die("Error save to file!");
-
-    list_passwords_free(&pwd);
+        die("Empty password list!");
     return 0;
 }
