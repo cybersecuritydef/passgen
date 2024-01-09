@@ -466,9 +466,6 @@ list_passwords *generate_passwords(person *p){
                 join_birthday(&pwd, p->company, p->birthday);
         }
 
-        if(strlen(p->birthday) > 0)
-            add_password_list(&pwd, p->birthday);
-
         if(strlen(p->firstname) > 0 && strlen(p->lastname) > 0){
             INFORMATION("Passwords join firstname lastname...\n");
             join_names(&pwd, p->firstname, p->lastname);
