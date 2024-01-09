@@ -50,6 +50,7 @@ int str_upper_chr(const char *str, int index, char *new_str){
         new_str[iindex] = '\0';
         return 0;
     }
+    return EOF;
 }
 
 int str_upper_string(const char *str, char *new_str){

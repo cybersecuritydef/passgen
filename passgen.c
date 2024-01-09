@@ -1,8 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "generate.h"
+
+bool save_to_file(list_passwords *pwd, const char *filename){
+    FILE *file = NULL;
+    if((file = fopen(filename, "w")) != NULL){
+        while(pwd != NULL){
+            fprintf(file, "%s\n", pwd->password);
+            pwd = pwd->next;
+        }
+        return true;
+    }
+    return false;
+}
 
 char *prompt(const char *msg, char *buf, size_t len){
     printf("%s", msg);
@@ -46,9 +59,9 @@ int main(int argc, char **argv){
 
     INFORMATION("Passwords save to file...\n");
     if(save_to_file(pwd, p.filename))
-        INFORMATION("Successful!");
+        INFORMATION("Successful!\n");
     else
-        INFORMATION("Error save to file!");
+        die("Error save to file!");
 
     list_passwords_free(&pwd);
     return 0;

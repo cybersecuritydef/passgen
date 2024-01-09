@@ -19,10 +19,10 @@ typedef struct _list_passwords{
     struct _list_passwords *next;
 }list_passwords;
 
-int save_to_file(list_passwords *pwd, const char *filename);
-
 list_passwords *generate_passwords(person *p);
 
 void list_passwords_free(list_passwords **pwd);
+
+
 
 #endif // __GENERATE_H__

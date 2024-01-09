@@ -6,6 +6,8 @@
 #include "tools.h"
 #include "generate.h"
 
+
+
 static void add_password_list(list_passwords **pwd, const char *value){
     list_passwords *tmp = NULL;
     if(pwd != NULL){
@@ -15,7 +17,7 @@ static void add_password_list(list_passwords **pwd, const char *value){
             (*pwd) = tmp;
         }
         else
-            DIE("Memory allocation error");
+            die("Error allocation memory");
     }
 }
 
@@ -446,24 +448,14 @@ list_passwords *generate_passwords(person *p){
 
 void list_passwords_free(list_passwords **pwd){
     list_passwords *tmp = NULL;
-    while((*pwd)->next != NULL){
-        tmp = (*pwd);
-        (*pwd) = (*pwd)->next;
-        free(tmp);
-        tmp = NULL;
-    }
-    free((*pwd));
-    (*pwd) = NULL;
-}
-
-int save_to_file(list_passwords *pwd, const char *filename){
-    FILE *file = NULL;
-    if((file = fopen(filename, "w")) != NULL){
-        while(pwd != NULL){
-            fprintf(file, "%s\n", pwd->password);
-            pwd = pwd->next;
+    if(pwd != NULL && (*pwd) != NULL){
+        while((*pwd)->next != NULL){
+            tmp = (*pwd);
+            (*pwd) = (*pwd)->next;
+            free(tmp);
+            tmp = NULL;
         }
-        return 0;
+        free((*pwd));
+        (*pwd) = NULL;
     }
-    return EOF;
 }
