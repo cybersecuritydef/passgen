@@ -44,7 +44,7 @@ int main(int argc, char **argv){
 
     prompt("Input compnay: ", p.company, sizeof(p.company));
 
-    prompt("Input birthday: ", p.birthday, sizeof(p.birthday));
+    prompt("Input birthday (DD.MM.YYY | DD/MM/YYYY | DD-MM-YYYY): ", p.birthday, sizeof(p.birthday));
 
     prompt("Input filename: ", p.filename, sizeof(p.filename));
 
