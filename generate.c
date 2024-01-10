@@ -510,6 +510,7 @@ list_passwords *generate_passwords(person *p){
         INFORMATION("Passwords upper...\n");
         password_upper(&pwd);
 
+        INFORMATION("Removing duplicate...\n");
         remove_duplicate(&pwd);
         
         return pwd;
