@@ -420,6 +420,29 @@ static void password_reverse(list_passwords **pwd){
     }
 }
 
+static void remove_duplicate(list_passwords **pwd){
+    list_passwords *p = NULL;
+    list_passwords *q = NULL;
+    list_passwords *dup = NULL;
+    if(pwd != NULL && (*pwd) != NULL){
+        p = (*pwd);
+        while(p != NULL){
+            q = p;
+            while(q->next != NULL){
+                if(strcmp(p->password, q->next->password) == 0){
+                    dup = q->next;
+                    q->next = dup->next;
+                    free(dup);
+                    dup = NULL;
+                }
+                else
+                    q = q->next;
+            }
+            p = p->next;
+        }   
+    }    
+}
+
 list_passwords *generate_passwords(person *p){
     list_passwords *pwd = NULL;
 
