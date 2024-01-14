@@ -27,14 +27,13 @@ static void add_password_digit(list_passwords **pwd){
     char t[MAX_PASS_LEN] = {'\0'};
     int index = 0;
     int jj = 0;
-    int i = 0;
     list_passwords *new_pwd = NULL;
     list_passwords *cur = NULL;
     if(pwd != NULL && (*pwd) != NULL){
         cur = (*pwd);
         while(cur != NULL){
             /* add digits to right */
-            /*for(jj = 0; jj <= 9; jj++){
+            for(jj = 0; jj <= 9; jj++){
                 memset(word, '\0', sizeof(word));
                 snprintf(word, MAX_PASS_LEN - 1, "%s", cur->password);
                 for(index = jj; index <= 9; index++){
@@ -43,29 +42,8 @@ static void add_password_digit(list_passwords **pwd){
                 }
             }
 
-            for(i = 9; i >= 2; i--){
-                for(jj = 0; jj <= 9; jj++){
-                    memset(w, '\0', sizeof(w));
-                    memset(word, '\0', sizeof(word));
-                    for(index = 0; index < i; index++)
-                        snprintf(w, MAX_PASS_LEN - 1, "%s%d", w, jj);
-                    snprintf(word, MAX_NAME_LEN - 1, "%s%s", cur->password, w);
-                    add_password_list(&new_pwd, word);
-                    snprintf(word, MAX_NAME_LEN - 1, "%s_%s", cur->password, w);
-                    add_password_list(&new_pwd, word);
-                    snprintf(word, MAX_NAME_LEN - 1, "%s-%s", cur->password, w);
-                    add_password_list(&new_pwd, word);
-                }
-            }*/
-
-            for(index = 0; index <= 9999; index++){
-                snprintf(w, MAX_PASS_LEN - 1, "%d", index);
-                snprintf(t, MAX_PASS_LEN - 1, "%s%s", w, word);
-                add_password_list(&new_pwd, t);
-            }
-
             /* add digits to left */
-            /*for(jj = 0; jj <= 9; jj++){
+            for(jj = 0; jj <= 9; jj++){
                 memset(word, '\0', sizeof(word));
                 memset(t, '\0', sizeof(t));
                 memset(w, '\0', sizeof(w));
@@ -76,21 +54,6 @@ static void add_password_digit(list_passwords **pwd){
                     add_password_list(&new_pwd, t);
                 }
             }
-
-            for(i = 9; i >= 2; i--){
-                for(jj = 0; jj <= 9; jj++){
-                    memset(w, '\0', sizeof(w));
-                    memset(word, '\0', sizeof(word));
-                    for(index = 0; index < i; index++)
-                        snprintf(w, MAX_PASS_LEN - 1, "%s%d", w, jj);
-                    snprintf(word, MAX_NAME_LEN - 1, "%s%s", w, cur->password);
-                    add_password_list(&new_pwd, word);
-                    snprintf(word, MAX_NAME_LEN - 1, "%s_%s", w, cur->password);
-                    add_password_list(&new_pwd, word);
-                    snprintf(word, MAX_NAME_LEN - 1, "%s-%s", w, cur->password);
-                    add_password_list(&new_pwd, word);
-                }
-            }*/
 
             add_password_list(&new_pwd, cur->password);
             cur = cur->next;
@@ -447,30 +410,6 @@ static void password_reverse(list_passwords **pwd){
     }
 }
 
-static void remove_duplicate(list_passwords **pwd){
-    list_passwords *p = NULL;
-    list_passwords *q = NULL;
-    list_passwords *dup = NULL;
-    if(pwd != NULL && (*pwd) != NULL){
-        p = (*pwd);
-        while(p != NULL){
-            q = p;
-            while(q->next != NULL){
-                if(strcmp(p->password, q->next->password) == 0){
-                    q->next = q->next->next;
-                    /*dup = q->next;
-                    q->next = dup->next;
-                    free(dup);
-                    dup = NULL;*/
-                }
-                else
-                    q = q->next;
-            }
-            p = p->next;
-        }
-    }
-}
-
 list_passwords *generate_passwords(person *p){
     list_passwords *pwd = NULL;
 
@@ -490,6 +429,7 @@ list_passwords *generate_passwords(person *p){
                 if(strlen(p->firstname) > 0){
                     names_join_birthday(&pwd, p->firstname, p->lastname, p->birthday);
                     names_join_birthday(&pwd, p->lastname, p->firstname, p->birthday);
+                    join_names(&pwd, p->firstname, p->lastname);
                 }
             }
         }
@@ -502,10 +442,12 @@ list_passwords *generate_passwords(person *p){
                 if(strlen(p->firstname) > 0){
                     names_join_birthday(&pwd, p->firstname, p->middlename, p->birthday);
                     names_join_birthday(&pwd, p->middlename, p->firstname, p->birthday);
+                    join_names(&pwd, p->firstname, p->middlename);
                 }
                 if(strlen(p->lastname) > 0){
                     names_join_birthday(&pwd, p->lastname, p->middlename, p->birthday);
                     names_join_birthday(&pwd, p->middlename, p->lastname, p->birthday);
+                    join_names(&pwd, p->lastname, p->middlename);
                 }
             }
         }
@@ -518,14 +460,17 @@ list_passwords *generate_passwords(person *p){
                 if(strlen(p->firstname) > 0){
                     names_join_birthday(&pwd, p->firstname, p->nickname, p->birthday);
                     names_join_birthday(&pwd, p->nickname, p->firstname, p->birthday);
+                    join_names(&pwd, p->firstname, p->nickname);
                 }
                 if(strlen(p->lastname) > 0){
                     names_join_birthday(&pwd, p->lastname, p->nickname, p->birthday);
                     names_join_birthday(&pwd, p->nickname, p->lastname, p->birthday);
+                    join_names(&pwd, p->lastname, p->nickname);
                 }
                 if(strlen(p->middlename) > 0){
                     names_join_birthday(&pwd, p->middlename, p->nickname, p->birthday);
                     names_join_birthday(&pwd, p->nickname, p->middlename, p->birthday);
+                    join_names(&pwd, p->middlename, p->nickname);
                 }
             }
         }
@@ -538,18 +483,22 @@ list_passwords *generate_passwords(person *p){
                 if(strlen(p->firstname) > 0){
                     names_join_birthday(&pwd, p->firstname, p->pet, p->birthday);
                     names_join_birthday(&pwd, p->pet, p->firstname, p->birthday);
+                    join_names(&pwd, p->firstname, p->pet);
                 }
                 if(strlen(p->lastname) > 0){
                     names_join_birthday(&pwd, p->lastname, p->pet, p->birthday);
                     names_join_birthday(&pwd, p->pet, p->lastname, p->birthday);
+                    join_names(&pwd, p->lastname, p->pet);
                 }
                 if(strlen(p->middlename) > 0){
                     names_join_birthday(&pwd, p->middlename, p->pet, p->birthday);
                     names_join_birthday(&pwd, p->pet, p->middlename, p->birthday);
+                    join_names(&pwd, p->middlename, p->pet);
                 }
                 if(strlen(p->nickname) > 0){
                     names_join_birthday(&pwd, p->nickname, p->pet, p->birthday);
                     names_join_birthday(&pwd, p->pet, p->nickname, p->birthday);
+                    join_names(&pwd, p->nickname, p->pet);
                 }
             }
         }
@@ -562,22 +511,27 @@ list_passwords *generate_passwords(person *p){
                 if(strlen(p->firstname) > 0){
                     names_join_birthday(&pwd, p->firstname, p->company, p->birthday);
                     names_join_birthday(&pwd, p->company, p->firstname, p->birthday);
+                    join_names(&pwd, p->firstname, p->company);
                 }
                 if(strlen(p->lastname) > 0){
                     names_join_birthday(&pwd, p->lastname, p->company, p->birthday);
                     names_join_birthday(&pwd, p->company, p->lastname, p->birthday);
+                    join_names(&pwd, p->lastname, p->company);
                 }
                 if(strlen(p->middlename) > 0){
                     names_join_birthday(&pwd, p->middlename, p->company, p->birthday);
                     names_join_birthday(&pwd, p->company, p->middlename, p->birthday);
+                    join_names(&pwd, p->middlename, p->company);
                 }
                 if(strlen(p->nickname) > 0){
                     names_join_birthday(&pwd, p->nickname, p->company, p->birthday);
                     names_join_birthday(&pwd, p->company, p->nickname, p->birthday);
+                    join_names(&pwd, p->nickname, p->company);
                 }
                 if(strlen(p->pet) > 0){
                     names_join_birthday(&pwd, p->pet, p->company, p->birthday);
                     names_join_birthday(&pwd, p->company, p->pet, p->birthday);
+                    join_names(&pwd, p->pet, p->company);
                 }
             }
         }
@@ -593,9 +547,6 @@ list_passwords *generate_passwords(person *p){
 
         INFORMATION("Passwords upper...\n");
         password_upper(&pwd);
-
-        /*INFORMATION("Removing duplicate...\n");
-        remove_duplicate(&pwd);*/
 
         return pwd;
     }
