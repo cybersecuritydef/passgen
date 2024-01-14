@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-int str_replace_chr(const char *str, int chr, int rep, char *new_str){
+int str_replace_chr(const char *str, const int chr, const int rep, char *new_str){
     int pos = 0;
     int index = 0;
     if(str != NULL && new_str != NULL){
@@ -21,7 +21,7 @@ int str_replace_chr(const char *str, int chr, int rep, char *new_str){
     return EOF;
 }
 
-int str_index_chr(const char *str, int chr){
+int str_index_chr(const char *str, const int chr){
     int index = 0;
     if(str != NULL){
         while(str[index] != '\0'){
@@ -33,7 +33,7 @@ int str_index_chr(const char *str, int chr){
     return EOF;
 }
 
-int str_upper_chr(const char *str, int index, char *new_str){
+int str_upper_chr(const char *str, const int index, char *new_str){
     int pos = 0;
     int iindex = 0;
     if(str != NULL && index >= 0 && new_str != NULL){
