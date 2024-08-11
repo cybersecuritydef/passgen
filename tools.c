@@ -65,7 +65,7 @@ int str_upper_string(const char *str, char *new_str){
 
 int str_lower_string(const char *str, char *new_str){
     if(str != NULL && new_str != NULL){
-        while(*str != '\0'){
+        while(*str){
             *new_str++ = tolower(*str++);
         }
         *new_str = '\0';
