@@ -22,13 +22,12 @@ int str_replace_chr(const char *str, const int chr, const int rep, char *new_str
 }
 
 int str_index_chr(const char *str, const int chr){
-    int index = 0;
-    if(str != NULL){
-        while(str[index] != '\0'){
-            if(str[index] == chr)
-                return index;
-            index++;
-        }
+    const char *cur = str;
+    if(cur != NULL){
+        while(*cur++ && *cur != chr)
+            ;
+        if((cur - str) <= strlen(str))
+            return cur - str;
     }
     return EOF;
 }
