@@ -54,9 +54,8 @@ int str_upper_chr(const char *str, const int index, char *new_str){
 
 int str_upper_string(const char *str, char *new_str){
     if(str != NULL && new_str != NULL){
-        while(*str){
-            *new_str++ = toupper(*str++);
-        }
+        while(*new_str++ = toupper(*str++))
+            ;
         *new_str = '\0';
         return 0;
     }
@@ -65,9 +64,8 @@ int str_upper_string(const char *str, char *new_str){
 
 int str_lower_string(const char *str, char *new_str){
     if(str != NULL && new_str != NULL){
-        while(*str){
-            *new_str++ = tolower(*str++);
-        }
+        while(*new_str++ = tolower(*str++))
+            ;
         *new_str = '\0';
         return 0;
     }
