@@ -54,7 +54,7 @@ int str_upper_chr(const char *str, const int index, char *new_str){
 
 int str_upper_string(const char *str, char *new_str){
     if(str != NULL && new_str != NULL){
-        while(*str != '\0'){
+        while(*str){
             *new_str++ = toupper(*str++);
         }
         *new_str = '\0';
