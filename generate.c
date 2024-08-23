@@ -33,22 +33,22 @@ static void add_password_digit(list_passwords **pwd){
         cur = (*pwd);
         while(cur != NULL){
             /* add digits to right */
-            for(jj = 0; jj <= 9; jj++){
+            for(jj = 0; jj < 10; jj++){
                 memset(word, '\0', sizeof(word));
                 snprintf(word, MAX_PASS_LEN - 1, "%s", cur->password);
-                for(index = jj; index <= 9; index++){
+                for(index = jj; index < 10; index++){
                     snprintf(word, MAX_PASS_LEN - 1, "%s%d", word, index);
                     add_password_list(&new_pwd, word);
                 }
             }
 
             /* add digits to left */
-            for(jj = 0; jj <= 9; jj++){
+            for(jj = 0; jj < 10; jj++){
                 memset(word, '\0', sizeof(word));
                 memset(t, '\0', sizeof(t));
                 memset(w, '\0', sizeof(w));
                 snprintf(word, MAX_PASS_LEN - 1, "%s", cur->password);
-                for(index = jj; index <= 9; index++){
+                for(index = jj; index < 10; index++){
                     snprintf(w, MAX_PASS_LEN - 1, "%s%d", w, index);
                     snprintf(t, MAX_PASS_LEN - 1, "%s%s", w, word);
                     add_password_list(&new_pwd, t);
