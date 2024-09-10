@@ -557,13 +557,11 @@ list_passwords *generate_passwords(person *p){
 void list_passwords_free(list_passwords **pwd){
     list_passwords *tmp = NULL;
     if(pwd != NULL && (*pwd) != NULL){
-        while((*pwd)->next != NULL){
+        while((*pwd) != NULL){
             tmp = (*pwd);
             (*pwd) = (*pwd)->next;
             free(tmp);
             tmp = NULL;
         }
-        free((*pwd));
-        (*pwd) = NULL;
     }
 }
