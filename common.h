@@ -1,7 +1,6 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
-#define INFORMATION(msg) printf("[!] %s\n", msg)
 
 #define MAX_NAME_LEN 256
 #define MAX_PASS_LEN 512

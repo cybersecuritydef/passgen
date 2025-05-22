@@ -1,6 +1,15 @@
 #ifndef __GENERATE_H__
 #define __GENERATE_H__
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <set>
+
 #include "common.h"
 
 typedef struct _person{
@@ -14,14 +23,22 @@ typedef struct _person{
     char filename[MAX_NAME_LEN];
 }person;
 
-typedef struct _list_passwords{
-    char password[MAX_PASS_LEN];
-    struct _list_passwords *next;
-}list_passwords;
+class GenPass{
 
-list_passwords *generate_passwords(person *p);
+public:
+    GenPass(){}
+    ~GenPass(){}
+    std::set<std::string> generate_passwords(person *p);
 
-void list_passwords_free(list_passwords **pwd);
+private:
+    void names_join_birthday(std::set<std::string> &words, const char *firstname, const char *lastname, const char *birthday);
+    void join_birthday(std::set<std::string> &words, const char *birthday);
+    void join_names(std::set<std::string> &words, const char *firstname, const char *lastname);
+    void password_mutation(std::set<std::string> &words);
+    void password_upper(std::set<std::string> &words);
+    void add_password_digit(std::set<std::string> &words);
+};
+
 
 
 
