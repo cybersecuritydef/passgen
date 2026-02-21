@@ -229,7 +229,6 @@ void GenPass::join_names(std::set<std::string> &words, const char *firstname, co
         words.insert(word);
         snprintf(word, MAX_NAME_LEN - 1, "%s.%s", lastname, firstname);
         words.insert(word);
-
         snprintf(word, MAX_NAME_LEN - 1, "%s_%c", firstname, lastname[0]);
         words.insert(word);
         snprintf(word, MAX_NAME_LEN - 1, "%s-%c", firstname, lastname[0]);
