@@ -778,7 +778,10 @@ std::set<std::string> GenPass::generate_passwords(person *p){
                 }
             }
         }
-       
+   
+       std::cout << "[!] Passwords lower" << std::endl << std::endl;
+        password_lower(words);
+
         std::cout << "[!] Passwords upper" << std::endl << std::endl;
         password_upper(words);
 
