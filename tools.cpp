@@ -71,7 +71,7 @@ int Tools::str_replace_chr_all(const char *str, const int chr, const int rep, ch
     return EOF;
 }
 
-int Tools::str_index_chr(const char *str, const int chr){
+int Tools::str_count_chr(const char *str, const int chr){
     const char *cur = str;
     if(cur != nullptr){
         while(*cur++ && *cur != chr)
