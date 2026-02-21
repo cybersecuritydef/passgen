@@ -130,10 +130,6 @@ void GenPass::password_lower(std::set<std::string> &words){
                 if(tools.str_upper_chr(tmp.c_str(), index, word) == 0)
                     w.insert(word);
             }
-            if(tools.str_upper_title_chr(tmp.c_str(), word) == 0)
-                w.insert(word);
-            if(tools.str_upper_string(tmp.c_str(), word) == 0)
-                w.insert(word);
             ++it;
         }
         words.insert(w.begin(), w.end());
