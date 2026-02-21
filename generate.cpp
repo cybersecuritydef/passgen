@@ -141,9 +141,6 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
                 tools.str_replace_chr_all(tmp.c_str(), 's', '$', word);
                 w.insert(word);
-            }
-
-            if(tools.str_count_chr(tmp.c_str(), 's') > 1){
                 tools.str_replace_chr(tmp.c_str(), 's', '5', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 's', '5', word);
