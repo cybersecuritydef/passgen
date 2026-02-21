@@ -177,7 +177,6 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
                 tools.str_replace_chr_all(tmp.c_str(), 'z', '2', word);
                 w.insert(word);
-
             }
 
             if(tools.str_index_chr(tmp.c_str(), 'g') != EOF){
