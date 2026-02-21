@@ -619,13 +619,10 @@ std::set<std::string> GenPass::generate_passwords(person *p){
     Tools tools;
     std::cout << "[!] Passwords names" << std::endl << std::endl;
     if(p != nullptr){
-        if(strlen(p->firstname) > 0){
-            tools.str_lower_string(p->firstname, p->firstname);
+        if(strlen(p->firstname) > 0)
             words.insert(p->firstname);
-        }
 
         if(strlen(p->lastname) > 0){
-            tools.str_lower_string(p->lastname, p->lastname);
             words.insert(p->lastname);
             if(strlen(p->firstname) > 0){
                 join_names(words, p->firstname, p->lastname);
@@ -634,7 +631,6 @@ std::set<std::string> GenPass::generate_passwords(person *p){
         }
 
         if(strlen(p->middlename) > 0){
-            tools.str_lower_string(p->middlename, p->middlename);
             words.insert(p->middlename);
             if(strlen(p->firstname) > 0){
                 join_names(words, p->firstname, p->middlename);
@@ -647,7 +643,6 @@ std::set<std::string> GenPass::generate_passwords(person *p){
         }
 
         if(strlen(p->nickname) > 0){
-            tools.str_lower_string(p->nickname, p->nickname);
             words.insert(p->nickname);
             if(strlen(p->firstname) > 0){
                 join_names(words, p->firstname, p->nickname);
@@ -664,7 +659,6 @@ std::set<std::string> GenPass::generate_passwords(person *p){
         }
 
         if(strlen(p->pet) > 0){
-            tools.str_lower_string(p->pet, p->pet);
             words.insert(p->pet);
             if(strlen(p->firstname) > 0){
                 join_names(words, p->firstname, p->pet);
@@ -685,7 +679,6 @@ std::set<std::string> GenPass::generate_passwords(person *p){
         }
 
         if(strlen(p->company) > 0){
-            tools.str_lower_string(p->company, p->company);
             words.insert(p->company);
             if(strlen(p->firstname) > 0){
                 join_names(words, p->firstname, p->company);
