@@ -36,6 +36,7 @@ private:
     void join_names(std::set<std::string> &words, const char *firstname, const char *lastname);
     void password_mutation(std::set<std::string> &words);
     void password_upper(std::set<std::string> &words);
+    void password_lower(std::set<std::string> &words);
     void add_password_digit(std::set<std::string> &words);
 };
 
