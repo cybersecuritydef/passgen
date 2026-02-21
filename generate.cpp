@@ -125,7 +125,7 @@ void GenPass::password_mutation(std::set<std::string> &words){
         while(it != words.end()){
             memset(word, '\0', sizeof(word));
             std::string tmp = *it;
-            if(tools.str_index_chr(tmp.c_str(), 'a') != EOF){
+            if(tools.str_count_chr(tmp.c_str(), 'a') > 1){
                 tools.str_replace_chr(tmp.c_str(), 'a', '@', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 'a', '@', word);
@@ -134,7 +134,7 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
             }
 
-            if(tools.str_index_chr(tmp.c_str(), 's') != EOF){
+            if(tools.str_count_chr(tmp.c_str(), 's') > 1){
                 tools.str_replace_chr(tmp.c_str(), 's', '$', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 's', '$', word);
@@ -143,7 +143,7 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
             }
 
-            if(tools.str_index_chr(tmp.c_str(), 's') != EOF){
+            if(tools.str_count_chr(tmp.c_str(), 's') > 1){
                 tools.str_replace_chr(tmp.c_str(), 's', '5', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 's', '5', word);
@@ -152,7 +152,7 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
             }
 
-            if(tools.str_index_chr(tmp.c_str(), 'o') != EOF){
+            if(tools.str_count_chr(tmp.c_str(), 'o') > 1){
                 tools.str_replace_chr(tmp.c_str(), 'o', '0', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 'o', '0', word);
@@ -161,7 +161,7 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
             }
 
-            if(tools.str_index_chr(tmp.c_str(), 'i') != EOF){
+            if(tools.str_count_chr(tmp.c_str(), 'i') > 1){
                 tools.str_replace_chr(tmp.c_str(), 'i', '!', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 'i', '!', word);
@@ -170,7 +170,7 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
             }
 
-            if(tools.str_index_chr(tmp.c_str(), 'z') != EOF){
+            if(tools.str_count_chr(tmp.c_str(), 'z') > 1){
                 tools.str_replace_chr(tmp.c_str(), 'z', '2', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 'z', '2', word);
@@ -179,7 +179,7 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
             }
 
-            if(tools.str_index_chr(tmp.c_str(), 'g') != EOF){
+            if(tools.str_count_chr(tmp.c_str(), 'g') > 1){
                 tools.str_replace_chr(tmp.c_str(), 'g', '9', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 'g', '9', word);
