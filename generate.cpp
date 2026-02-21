@@ -116,6 +116,30 @@ void GenPass::password_upper(std::set<std::string> &words){
     }
 }
 
+void GenPass::password_lower(std::set<std::string> &words){
+    char word[MAX_PASS_LEN] = {'\0'};
+    int index = 0;
+    Tools tools;
+    std::set<std::string> w;
+    std::set<std::string>::iterator it = words.begin();
+    if(words.size() > 0){
+        while(it != words.end()){
+            memset(word, '\0', sizeof(word));
+            std::string tmp = *it;
+            for(index = 0; index < tmp.size(); index++){
+                if(tools.str_upper_chr(tmp.c_str(), index, word) == 0)
+                    w.insert(word);
+            }
+            if(tools.str_upper_title_chr(tmp.c_str(), word) == 0)
+                w.insert(word);
+            if(tools.str_upper_string(tmp.c_str(), word) == 0)
+                w.insert(word);
+            ++it;
+        }
+        words.insert(w.begin(), w.end());
+    }
+}
+
 void GenPass::password_mutation(std::set<std::string> &words){
     char word[MAX_PASS_LEN] = {'\0'};
     Tools tools;
