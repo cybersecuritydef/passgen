@@ -152,30 +152,12 @@ void GenPass::password_mutation(std::set<std::string> &words){
                 w.insert(word);
             }
 
-            if(tools.str_index_chr(tmp.c_str(), '5') != EOF){
-                tools.str_replace_chr(tmp.c_str(), '5', '$', word);
-                w.insert(word);
-                tools.str_replace_chr_end(tmp.c_str(), '5', '$', word);
-                w.insert(word);
-                tools.str_replace_chr_all(tmp.c_str(), '5', '$', word);
-                w.insert(word);
-            }
-
             if(tools.str_index_chr(tmp.c_str(), 'o') != EOF){
                 tools.str_replace_chr(tmp.c_str(), 'o', '0', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 'o', '0', word);
                 w.insert(word);
                 tools.str_replace_chr_all(tmp.c_str(), 'o', '0', word);
-                w.insert(word);
-            }
-
-            if(tools.str_index_chr(tmp.c_str(), '0') != EOF){
-                tools.str_replace_chr(tmp.c_str(), '0', 'o', word);
-                w.insert(word);
-                tools.str_replace_chr_end(tmp.c_str(), '0', 'o', word);
-                w.insert(word);
-                tools.str_replace_chr_all(tmp.c_str(), '0', 'o', word);
                 w.insert(word);
             }
 
@@ -198,30 +180,12 @@ void GenPass::password_mutation(std::set<std::string> &words){
 
             }
 
-            if(tools.str_index_chr(tmp.c_str(), '2') != EOF){
-                tools.str_replace_chr(tmp.c_str(), '2', 'z', word);
-                w.insert(word);
-                tools.str_replace_chr_end(tmp.c_str(), '2', 'z', word);
-                w.insert(word);
-                tools.str_replace_chr_all(tmp.c_str(), '2', 'z', word);
-                w.insert(word);
-            }
-
             if(tools.str_index_chr(tmp.c_str(), 'g') != EOF){
                 tools.str_replace_chr(tmp.c_str(), 'g', '9', word);
                 w.insert(word);
                 tools.str_replace_chr_end(tmp.c_str(), 'g', '9', word);
                 w.insert(word);
                 tools.str_replace_chr_all(tmp.c_str(), 'g', '9', word);
-                w.insert(word);
-            }
-
-            if(tools.str_index_chr(tmp.c_str(), '9') != EOF){
-                tools.str_replace_chr(tmp.c_str(), '9', 'g', word);
-                w.insert(word);
-                tools.str_replace_chr_end(tmp.c_str(), '9', 'g', word);
-                w.insert(word);
-                tools.str_replace_chr_all(tmp.c_str(), '9', 'g', word);
                 w.insert(word);
             }
             ++it;
