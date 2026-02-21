@@ -701,8 +701,6 @@ std::set<std::string> GenPass::generate_passwords(person *p){
                 join_names(words, p->company, p->pet);
             }
         }
-        std::cout << "[!] Passwords upper" << std::endl << std::endl;
-        password_upper(words);
 
         if(strlen(p->birthday) > 0){
             std::cout << "[!] Passwords birthday" << std::endl << std::endl;
@@ -780,6 +778,9 @@ std::set<std::string> GenPass::generate_passwords(person *p){
                 }
             }
         }
+       
+        std::cout << "[!] Passwords upper" << std::endl << std::endl;
+        password_upper(words);
 
         std::cout << "[!] Add digits passwords" << std::endl << std::endl;
         add_password_digit(words);
