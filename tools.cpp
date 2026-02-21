@@ -53,7 +53,7 @@ int Tools::str_replace_chr_end(const char *str, int chr, int rep, char *new_str)
     return EOF;
 }
 
-int Tools::str_replace_chr_all(const char *str, const int chr, const int rep, char *new_str){
+int Tools::str_replace_chr_all(const char *str, const int chr, const int rep, char *new_str{
     int pos = 0;
     int index = 0;
     if(str != nullptr && new_str != nullptr){
@@ -72,14 +72,16 @@ int Tools::str_replace_chr_all(const char *str, const int chr, const int rep, ch
 }
 
 int Tools::str_count_chr(const char *str, const int chr){
-    const char *cur = str;
+    int count = 0;
+    int pos = 0;
     if(cur != nullptr){
-        while(*cur++ && *cur != chr)
-            ;
-        if((cur - str) <= strlen(str))
-            return cur - str;
+        while(str[pos] != '\0'){
+            if(str[pos] == chr)
+                count++;
+            pos++;
+        }
     }
-    return EOF;
+    return count;
 }
 
 int Tools::str_upper_title_chr(const char *str, char *new_str){
