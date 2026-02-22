@@ -19,7 +19,7 @@ bool save_to_file(const char *filename, const std::set<std::string> &words){
 char *prompt(const char *msg, char *buf, size_t len){
     std::cout << msg;
     std::cin.getline(buf, len);
-    return NULL;
+    return nullptr;
 }
 
 
