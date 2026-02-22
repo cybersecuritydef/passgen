@@ -4,7 +4,6 @@
 
 #include "generate.h"
 
-
 bool save_to_file(const char *filename, const std::set<std::string> &words){
     std::ofstream file(filename);
     if(file.is_open()){
@@ -20,7 +19,6 @@ void prompt(const char *msg, char *buf, size_t len){
     std::cout << msg;
     std::cin.getline(buf, len);
 }
-
 
 int main(int argc, char **argv){
     person p;
