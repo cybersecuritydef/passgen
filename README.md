@@ -1,1 +1,1 @@
-Generate passwords
+Generating passwords based on personal data
