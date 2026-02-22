@@ -1,15 +1,5 @@
 #include "tools.h"
 
-
-bool Tools::is_string(const char *str){
-    while(*str != '\0'){
-        if(isdigit(*str))
-            return false;
-        *str++;
-    }
-    return true;
-}
-
 int Tools::str_replace_chr(const char *str, int chr, int rep, char *new_str){
     int pos = 0;
     int index = 0;
@@ -53,7 +43,7 @@ int Tools::str_replace_chr_end(const char *str, int chr, int rep, char *new_str)
     return EOF;
 }
 
-int Tools::str_replace_chr_all(const char *str, const int chr, const int rep, char *new_str{
+int Tools::str_replace_chr_all(const char *str, const int chr, const int rep, char *new_str){
     int pos = 0;
     int index = 0;
     if(str != nullptr && new_str != nullptr){
@@ -85,7 +75,7 @@ int Tools::str_count_chr(const char *str, const int chr){
 }
 
 int Tools::str_upper_title_chr(const char *str, char *new_str){
-    int pos = 0;
+    size_t pos = 0;
     int iindex = 0;
     if(str != nullptr && new_str != nullptr){
         while(str[pos] != '\0'){
@@ -121,35 +111,43 @@ int Tools::str_upper_chr(const char *str, const int index, char *new_str){
 }
 
 int Tools::str_upper_string(const char *str, char *new_str){
+    int index = 0;
+    int pos = 0;
     if(str != nullptr && new_str != nullptr){
-        while((*new_str++ = toupper(*str++)))
-            ;
-        *new_str = '\0';
+        while(str[index] != '\0'){
+            if(isalpha(str[index]))
+                new_str[pos++] = toupper(str[index++]);
+            else
+                new_str[pos++] = str[index++];
+        }
+        new_str[pos] = '\0';
         return 0;
     }
     return EOF;
 }
 
 int Tools::str_lower_string(const char *str, char *new_str){
+    int index = 0;
+    int pos = 0;
     if(str != nullptr && new_str != nullptr){
-        while((*new_str++ = tolower(*str++)))
-            ;
-        *new_str = '\0';
+        while(str[index] != '\0'){
+            if(isalpha(str[index]))
+                new_str[pos++] = tolower(str[index++]);
+            else
+                new_str[pos++] = str[index++];
+        }
+        new_str[pos] = '\0';
         return 0;
     }
     return EOF;
 }
 
-int Tools::str_reverse_string(const char *str, char *new_str){
-    int i, j;
-    if(str != nullptr && new_str != nullptr){
-        i = strlen(str) - 1;
-        j = 0;
-        while(i >= 0){
-            new_str[j++] = str[i--];
-        }
-        new_str[j] = '\0';
-        return 0;
+bool Tools::is_string(const char *str){
+    int index = 0;
+    while(str[index] != '\0'){
+        if(isdigit(str[index]))
+            return false;
+        index++;
     }
-    return EOF;
+    return true;
 }
