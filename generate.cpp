@@ -668,7 +668,6 @@ void GenPass::names_join_birthday(std::set<std::string> &words, const char *firs
 
 std::set<std::string> GenPass::generate_passwords(person *p){
     std::set<std::string> words;
-    Tools tools;
     std::cout << "[!] Passwords names" << std::endl << std::endl;
     if(p != nullptr){
         if(strlen(p->firstname) > 0)
