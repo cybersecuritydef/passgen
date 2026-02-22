@@ -102,10 +102,9 @@ void GenPass::password_upper(std::set<std::string> &words){
         while(it != words.end()){
             memset(word, '\0', sizeof(word));
             std::string tmp = *it;
-            for(index = 0; index < tmp.size(); index++){
+            for(index = 0; index < tmp.size(); index++)
                 if(tools.str_upper_chr(tmp.c_str(), index, word) == 0)
                     w.insert(word);
-            }
             if(tools.str_upper_title_chr(tmp.c_str(), word) == 0)
                 w.insert(word);
             if(tools.str_upper_string(tmp.c_str(), word) == 0)
