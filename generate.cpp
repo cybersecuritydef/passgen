@@ -25,49 +25,40 @@ void GenPass::add_password_digit(std::set<std::string> &words){
                 }
 
                 for(jj = 0; jj < 10; jj++){
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s%d%d", word, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s%d%d", tmp.c_str(), jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s_%d%d", word, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s_%d%d", tmp.c_str(), jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s-%d%d", word, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s-%d%d", tmp.c_str(), jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s%d%d%d", word, jj, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s%d%d%d", tmp.c_str(), jj, jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s_%d%d%d", word, jj, jj, jj);
+                    memset(word, '\0', sizeof(word));                   
+                    snprintf(word, MAX_PASS_LEN - 1, "%s_%d%d%d", tmp.c_str(), jj, jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s-%d%d%d", word, jj, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s-%d%d%d", tmp.c_str(), jj, jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s%d%d%d%d", word, jj, jj, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s%d%d%d%d", tmp.c_str(), jj, jj, jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s_%d%d%d%d", word, jj, jj, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s_%d%d%d%d", tmp.c_str(), jj, jj, jj, jj);
                     w.insert(word);
 
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    snprintf(word, MAX_PASS_LEN - 1, "%s-%d%d%d%d", word, jj, jj, jj, jj);
+                    memset(word, '\0', sizeof(word));                    
+                    snprintf(word, MAX_PASS_LEN - 1, "%s-%d%d%d%d", tmp.c_str(), jj, jj, jj, jj);
                     w.insert(word);
                 }
 
