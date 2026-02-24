@@ -16,10 +16,17 @@ void GenPass::add_password_digit(std::set<std::string> &words){
             if(tools.is_string(tmp.c_str())){
                  /* add digits to right */
                 for(jj = 0; jj < 10; jj++){
-                    memset(word, '\0', sizeof(word));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
+                    memset(word, '\0', sizeof(word));                    
                     for(index = jj; index < 10; index++){
-                        snprintf(word, MAX_PASS_LEN - 1, "%s%d", word, index);
+                        snprintf(word, MAX_PASS_LEN - 1, "%s%d", tmp.c_str(), index);
+                        w.insert(word);
+                    }
+                }
+                /* add digits to left */
+                for(jj = 0; jj < 10; jj++){
+                    memset(word, '\0', sizeof(word));                    
+                    for(index = jj; index < 10; index++){
+                        snprintf(word, MAX_PASS_LEN - 1, "%d%s", index, tmp.c_str());
                         w.insert(word);
                     }
                 }
@@ -60,20 +67,7 @@ void GenPass::add_password_digit(std::set<std::string> &words){
                     memset(word, '\0', sizeof(word));                    
                     snprintf(word, MAX_PASS_LEN - 1, "%s-%d%d%d%d", tmp.c_str(), jj, jj, jj, jj);
                     w.insert(word);
-                }
-
-                /* add digits to left */
-                for(jj = 0; jj < 10; jj++){
-                    memset(word, '\0', sizeof(word));
-                    memset(t, '\0', sizeof(t));
-                    memset(ww, '\0', sizeof(w));
-                    snprintf(word, MAX_PASS_LEN - 1, "%s", tmp.c_str());
-                    for(index = jj; index < 10; index++){
-                        snprintf(ww, MAX_PASS_LEN - 1, "%s%d", ww, index);
-                        snprintf(t, MAX_PASS_LEN - 1, "%s%s", ww, word);
-                        w.insert(t);
-                    }
-                }
+                }                
             }
             ++it;
         }
