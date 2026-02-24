@@ -833,11 +833,13 @@ std::set<std::string> GenPass::generate_passwords(person *p){
         std::cout << "[!] Passwords lower" << std::endl << std::endl;
         password_lower(words);
 
+        std::cout << "[!] Passwords mutation 1" << std::endl << std::endl;
+        password_mutation(words);
+        
         std::cout << "[!] Add digits passwords" << std::endl << std::endl;
         add_password_digit(words);
 
-        std::cout << "[!] Passwords mutation" << std::endl << std::endl;
-        password_mutation(words);
+        std::cout << "[!] Passwords mutation 2" << std::endl << std::endl;
         password_mutation(words);
 
         std::cout << "[!] Passwords upper" << std::endl << std::endl;
