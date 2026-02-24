@@ -13,9 +13,9 @@ void GenPass::add_password_digit(std::set<std::string> &words){
     if(words.size() > 0){
         while(it != words.end()){
             std::string tmp = *it;
+            memset(word, '\0', sizeof(word));
             if(tools.is_string(tmp.c_str())){                 
-                for(index = 0; index < 10; index++){
-                    memset(word, '\0', sizeof(word));
+                for(index = 0; index < 10; index++){                    
                     snprintf(word, MAX_PASS_LEN - 1, "%s%d", tmp.c_str(), index);
                     w.insert(word);
                     snprintf(word, MAX_PASS_LEN - 1, "%d%s", index, tmp.c_str());
