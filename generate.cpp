@@ -3,8 +3,6 @@
 
 void GenPass::add_password_digit(std::set<std::string> &words){
     char word[MAX_PASS_LEN] = {'\0'};
-    char ww[MAX_PASS_LEN] = {'\0'};
-    char t[MAX_PASS_LEN] = {'\0'};
     int index = 0;
     int jj = 0;
     Tools tools;
